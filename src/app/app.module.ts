@@ -45,7 +45,7 @@ import { AvatarModule } from 'ngx-avatar';
     AppRoutingModule,
     AvatarModule
   ],
-  providers: [ProjektService,OperatService, authInterceptorProviders],
+  providers: [ProjektService, OperatService, authInterceptorProviders],
   bootstrap: [AppComponent],
   exports: [NewProjektComponent]
 })
