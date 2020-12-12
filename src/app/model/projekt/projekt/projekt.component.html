@@ -1,0 +1,32 @@
+<div>
+	<div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button"
+    data-toggle="dropdown" (click)="refresh()">Wybierz projekt:
+    </button>
+
+		<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+      <h6 class="dropdown-header">zaznacz projekt</h6>
+      <option  class="dropdown-item" value="{{projekt}}"
+      *ngFor="let projekt of projektElementChild"
+      (click)="chooseSelectProjekt(projekt)">
+      {{projekt.projektName}}
+
+      </option>
+
+    </div>
+  </div>
+</div>
+<br>
+<div>
+	<button class="btn btn-primary" id="newOperatButton"
+		(click)="showNewOperatForm()" [disabled]="checkProjekt">{{buttonText}} </button>
+  </div>
+
+
+
+  <app-new-operat
+  [showMePartially]="showVar" [selectRootProjekt]="selectProjekt"
+  (updateList)="handleUpdateList($event)"></app-new-operat>
+
+<app-operat [selectRootProjekt]="selectProjekt" [operaty]="operaty"></app-operat>
+	<br>

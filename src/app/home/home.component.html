@@ -1,0 +1,71 @@
+<div>
+<div style="text-align:center">
+<section>
+  <nav>
+   <app-new-projekt
+    [showMePartially]="showVar"
+    (updateProjektNew)="handleupdateProjekt($event)"></app-new-projekt>
+    <div>
+        <button class="btn btn-primary" id="newProjektButton"
+        (click)="showNewProjektForm()">Nowy Projekt</button>
+      </div>
+
+
+       <h4> Wyszukiwanie:</h4>
+         <div>
+          <h5> według warstwy: </h5>
+          <div class="ui-inputgroup">
+           <span class="ui-float-label">
+           <input [(ngModel)]="operatLayer" name="operatLayer" pInputText
+            id="operatLayer" type="text" >
+            <label for="operatLayer">warstwa</label>
+            </span>
+            </div>
+          <button class="btn btn-primary" id="searchByLayerButton"
+          (click)="searchByLayerButton()"
+          [disabled]="checkProjekt">Szukaj wg warstwa</button>
+
+      </div>
+         <div>
+          <h5> według kilometraża: </h5>
+          <div class="ui-inputgroup">
+          <span class="ui-float-label">
+           <input  [(ngModel)]="kilometraz" name="kilometraz"
+            id="kilometraz" type="text" pInputText >
+            <label for="kilometraz">kilometraż</label>
+            </span>
+          </div>
+             <button class="btn btn-primary" id="searchByLayerKilometr"
+        (click)="searchByKilometrButton()" [disabled]="checkProjekt">Szukaj wg kilometraża</button>
+         </div>
+         <div>
+          <h5> między kilometrażem:</h5>
+          <div class="ui-inputgroup ui-float">
+
+          <span class="ui-float-label" >
+           <input style="margin-right: 3px;"[(ngModel)]="kmOd" name="kmOd"
+                   id="kmOd" type="text" size="15" pInputText>
+            <label for="kmOd"> od kilometra</label>
+          </span>
+          <span class="ui-float-label">
+            <input [(ngModel)]="kmDo" name="kmDo" pInputText
+                     id="kmDo" type="text" size="15">
+            <label for="kmDo"> do kilometra</label>
+          </span>
+
+        </div>
+             <button class="btn btn-primary" id="searchBetweenKilometr"
+        (click)="searchBetween()" [disabled]="checkProjekt">Szukaj wg zasięgu</button>
+
+         </div>
+
+    </nav>
+  <article>
+    <app-projekt [operaty]="operatArray" (updateProjekt)="handleUpdate($event)"></app-projekt>
+  </article>
+
+  <br>
+</section>
+</div>
+
+

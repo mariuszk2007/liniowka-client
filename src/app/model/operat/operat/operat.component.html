@@ -1,0 +1,68 @@
+
+
+<div>
+  <br>
+<label>Wybrany projekt:  &nbsp;</label>
+<input type="text" #title [(ngModel)]="selectProjekt.projektName" readonly="readonly" class="no-outline">
+<br>
+</div>
+<app-edit-operat [operat]="operat"
+[showMeEditOperat]="showEditOperat"
+(updateShowMeEdit)="updateShowMeEditMethod($event)" >
+</app-edit-operat>
+<div class="table table-bordered table-responsive table-hover table-striped">
+
+
+<p-table  #table [value]="operaty" sortMode="multiple" [globalFilterFields]="['layer']">
+  <ng-template pTemplate="caption">
+    <div class="ui-helper-clearfix" style="text-align: left">
+      <button type="button" pButton icon="pi pi-file-excel" iconPos="left" label="EXCEL" (click)="exportExcel()" style="margin-right: 0.5em;" class="ui-button-success"></button>
+      <button type="button" pButton icon="pi pi-file-pdf" iconPos="left" label="PDF" (click)="exportPdf()" class="ui-button-warning"></button>
+   </div>
+    <div style="text-align: right">
+        <i class="pi pi-search" style="margin:4px 4px 0 0"></i>
+        <input type="text" pInputText size="50" placeholder="Global Filter" (input)="table.filterGlobal($event.target.value, 'contains')" style="width:auto" >
+    </div>
+</ng-template>
+	<ng-template pTemplate="header" >
+		<tr>
+			<th  [ngStyle]="{'width':'15%'}" [pSortableColumn]="'operatNumber'" >Numer Operatu<p-sortIcon [field]="'operatNumber'"></p-sortIcon></th>
+			<th  [ngStyle]="{'width':'35%'}" [pSortableColumn]="'layer'">Warstwa<p-sortIcon [field]="'layer'"></p-sortIcon></th>
+      <th  [ngStyle]="{'width':'12%'}" [pSortableColumn]="'odKm'">Od km<p-sortIcon [field]="'odKm'"></p-sortIcon></th>
+      <th  [ngStyle]="{'width':'12%'}"  [pSortableColumn]="'doKm'">do Km<p-sortIcon [field]="'doKm'"></p-sortIcon></th>
+      <th  [ngStyle]="{'width':'12%'}"></th>
+		</tr>
+	</ng-template>
+
+	<ng-template pTemplate="body" let-operat let-i="rowIndex">
+		<tr>
+			<td class="col-2">{{operat.operatNumber }}</td>
+			<td class="col-5">{{operat.layer}}</td>
+      <td class="col-2">{{operat.odKm}}</td>
+      <td class="col-2">{{operat.doKm}}</td>
+      <td class="col-1" ><button (click)="editOperat(i)">Edit</button></td>
+    </tr>
+   </ng-template>
+
+	<tfoot>
+
+  </tfoot>
+
+</p-table>
+
+
+
+</div>
+<br>
+<br>
+<br>
+
+<script>
+  $(function() {
+    $('#sortable').change(function () {
+      $('#table').bootstrapTable('refreshOptions', {
+        sortable: $('#sortable').prop('checked')
+      })
+    })
+  })
+</script>

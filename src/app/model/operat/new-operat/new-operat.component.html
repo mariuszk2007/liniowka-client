@@ -1,0 +1,24 @@
+<div *ngIf="showMePartially">
+   <form [formGroup]="operatForm" (ngSubmit)="onSubmit()">
+    <div class="form-group row col-auto">
+      <label for="operatNumber" class="col-2">Numer operatu: </label>
+      <input type="text" id="operatNumber" formControlName="operatNumber" class="col-3">
+    </div>
+    <div class="form-group row col-auto">
+       <label for="operatLayer" class="col-2">Warstwa: </label>
+      <input type="text" id="operatLayer" formControlName="operatLayer" class="col-10">
+    </div>
+      <div class="form-group row col-auto">
+       <label for="odKm" class="col-2">Kilometraż początkowy: </label>
+      <input type="text" id="odKm" formControlName="odKm" class="col-3">
+      <label for="doKm" class="col-2">Kilometraż końcowy: </label>
+      <input type="text" id="doKm" formControlName="doKm" class="col-3">
+      <label> Długość odcinka {{distance}}</label>
+    </div>
+      <div class="form-group col-auto">
+      <button class="btn btn-primary col-2" type="submit">Zapisz</button>
+      <button class="btn btn-danger col-2" type="reset">Wyczyść pola</button>
+    </div>
+  </form>
+</div>
+

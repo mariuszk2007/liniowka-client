@@ -1,21 +1,55 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<body class="d-flex flex-column">
+<div id="page-content">
+  <nav class="navbar navbar-expand navbar-dark bg-dark text-white-50">
+    <header>
+      <h2>
+      {{ title }}
+      </h2>
+    </header>
+   
 
+    <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+      <li class="nav-item">
+        <a href="/register" class="nav-link" routerLink="register">Sign Up</a>
+      </li>
+      <li class="nav-item">
+        <a href="/login" class="nav-link" routerLink="login">Login</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+      <li class="nav-item">
+        <a href="/profile" class="nav-link" routerLink="profile">{{username}}</a>
+      </li>
+      <li class="nav-item">
+        <a href class="nav-link" (click)="logout()">LogOut</a>
+      </li>
+    </ul>
+  </nav>
+</div>
 <router-outlet></router-outlet>
+<div>
+ <app-home></app-home>
+</div>
+
+
+<footer class="py-3 bg-dark text-white-50">
+  <div class="copyright">
+    <div class="row">
+      <div class="span3">
+        <a href="http://www.euro-geo.pl/" class="logo_h logo_h__img"><img src="http://www.euro-geo.pl/wp-content/themes/theme53591/images/footer_logo.png" alt="Euro-Geo" title="Geodezja dziś i jutro"></a>
+      </div>
+      <div class="span9">
+        <div data-motopress-type="static" data-motopress-static-file="static/static-footer-text.php">
+          <div id="footer-text" class="footer-text">
+
+        <p>© 2020 Euro-Geo Sp. z o.o. - Wszelkie Prawa Zastrzeżone</p>
+
+      </div>
+      <a href="https://icons8.com/icon/LSqfbaGrCR_z/land-surveying">Land Surveying icon by Icons8</a>
+    </div>
+  </div>
+  </div>
+  </div>
+</footer>
+</body>

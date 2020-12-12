@@ -1,0 +1,14 @@
+<div *ngIf="showMePartially">
+
+  <form (ngSubmit)="addNewProject()">
+     <input [(ngModel)]="addedProjekt.projektName" name="projektName"
+      id="projektName" type="text" required pInputText placeholder="nazwa projektu">
+  <br>
+   <input [(ngModel)]="addedProjekt.projektDescription" name="projektDescription"
+   id="projektDescription" type="text" pInputText placeholder="opis projektu">
+  <br>
+  <button class="btn btn-primary" type="submit">{{buttonDodajProjekt}}</button>
+  </form>
+
+
+</div>
