@@ -25,7 +25,8 @@ export class HomeComponent implements OnInit {
   checkProjekt = true;
 
 
-  constructor(private projektService: ProjektService,
+  constructor(
+    private projektService: ProjektService,
     private operatService: OperatService) {
   }
   ngOnInit(): void {
@@ -55,15 +56,15 @@ export class HomeComponent implements OnInit {
       }
     });
     // tslint:disable-next-line:only-arrow-functions
-    inputkilometrDo.addEventListener('keyup', function (event) {
+    inputkilometrDo.addEventListener('keyup', function(event) {
       if (event.key === 'Enter') {
         event.preventDefault();
         document.getElementById('searchBetweenKilometr').click();
       }
     });
     // tslint:disable-next-line:only-arrow-functions
-    inputkilometrOd.addEventListener('keyup', function (event) {
-         if (event.key === 'Enter') {
+    inputkilometrOd.addEventListener('keyup', function(event) {
+      if (event.key === 'Enter') {
         // Cancel the default action, if needed
         event.preventDefault();
         document.getElementById('kmDo').focus();
