@@ -3,6 +3,8 @@ import { Projekt } from './../../projekt/Projekt';
 import { Component, OnInit, OnChanges, Input, ElementRef, ViewChild, AfterViewInit, Output, EventEmitter } from '@angular/core';
 import { Operat } from './Operat';
 import { OperatService } from './operat.service';
+import { UserService } from 'src/app/_service/user.service/user.service';
+import { User } from '../../User';
 
 
 
@@ -13,67 +15,70 @@ import { OperatService } from './operat.service';
 })
 export class OperatComponent implements OnInit, OnChanges {
   @Input()
-  operaty:Array<Operat>;
-  operat:Operat;
+  operaty: Array<Operat>;
+  operat: Operat;
   @Input()
-  selectRootProjekt:Projekt;
-  selectProjekt=new Projekt();
+  selectRootProjekt: Projekt;
+  selectProjekt = new Projekt();
   exportColumns: any[];
   cols: any[];
-  showEditOperat=false;
+  showEditOperat = false;
   @ViewChild('title') titleElement: ElementRef;
 
 
-  constructor(private operatService:OperatService) { }
+  constructor(
+    private operatService: OperatService,
+    private userService: UserService) { }
 
 
   exportPdf() {
     import('jspdf').then(jsPDF => {
-        import('jspdf-autotable').then(x => {
-            const doc = new jsPDF.default(0,0);
-            doc.autoTable(this.exportColumns, this.operaty);
-            doc.save('operaty.pdf');
-        })
+      import('jspdf-autotable').then(x => {
+        const doc = new jsPDF.default(0, 0);
+        doc.autoTable(this.exportColumns, this.operaty);
+        doc.save('operaty.pdf');
+      })
     })
-}
+  }
 
-exportExcel() {
+  exportExcel() {
     import('xlsx').then(xlsx => {
-        const worksheet = xlsx.utils.json_to_sheet(this.operaty);
-        const workbook = { Sheets: { data: worksheet }, SheetNames: ['data'] };
-        const excelBuffer: any = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
-        this.saveAsExcelFile(excelBuffer, 'operaty-');
+      const worksheet = xlsx.utils.json_to_sheet(this.operaty);
+      const workbook = { Sheets: { data: worksheet }, SheetNames: ['data'] };
+      const excelBuffer: any = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
+      this.saveAsExcelFile(excelBuffer, 'operaty-');
     });
-}
+  }
 
-editOperat(rowIndex){
+  editOperat(rowIndex) {
 
-this.operat = new Operat();
-this.operat = this.operaty[rowIndex];
-this.showEditOperat=true;
-this.titleElement.nativeElement.focus();
+    this.operat = new Operat();
+    this.operat = this.operaty[rowIndex];
+    this.showEditOperat = true;
+    this.titleElement.nativeElement.focus();
 
-}
+  }
 
-showEditOperatForm() {
-  this.showEditOperat = !this.showEditOperat;
-}
+  showEditOperatForm() {
+    this.showEditOperat = !this.showEditOperat;
+  }
 
-saveAsExcelFile(buffer: any, fileName: string): void {
+  saveAsExcelFile(buffer: any, fileName: string): void {
     import('file-saver').then(FileSaver => {
-        const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
-        const EXCEL_EXTENSION = '.xlsx';
-        const data: Blob = new Blob([buffer], {
-            type: EXCEL_TYPE
-        });
-        FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+      const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+      const EXCEL_EXTENSION = '.xlsx';
+      const data: Blob = new Blob([buffer], {
+        type: EXCEL_TYPE
+      });
+      FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
     });
-}
+  }
 
   ngOnChanges(changes: import('@angular/core').SimpleChanges): void {
-    if(this.selectRootProjekt){
-    this.selectProjekt=this.selectRootProjekt;
-            }
+    if (this.selectRootProjekt) {
+      this.selectProjekt = this.selectRootProjekt;
+    }
+
 
   }
   ngOnInit(): void {
@@ -81,16 +86,32 @@ saveAsExcelFile(buffer: any, fileName: string): void {
       { field: 'operatNumber', header: 'Numer Operatu' },
       { field: 'layer', header: 'Warstwa' },
       { field: 'odKm', header: 'od Km' },
-      { field: 'doKm', header: 'do km' }
-  ];
-    this.exportColumns = this.cols.map(col => ({title: col.header, dataKey: col.field}));
+      { field: 'doKm', header: 'do km' },
+      { field: 'createUserName', header: 'Utworzył' }
+    ];
+    this.exportColumns = this.cols.map(col => ({ title: col.header, dataKey: col.field }));
 
   }
-  handleUpdateOperat(operat){
-    this.operatService.getOperat(this.operat.projektId).subscribe(data=>{
-      this.operaty=data;});
-    }
-  updateShowMeEditMethod(onOff:boolean){
-       this.showEditOperat=onOff;
-    }
+  handleUpdateOperat(operat) {
+    this.operatService.getOperat(this.operat.projektId).subscribe(data => {
+      data = this.setCreateUserName(data);
+      this.operaty = data;
+    });
   }
+  updateShowMeEditMethod(onOff: boolean) {
+    this.showEditOperat = onOff;
+  }
+  setCreateUserName(operats: Array<Operat>): Array<Operat> {
+    console.log('tu musi być pipe');
+    const operatsWithUserName: Array<Operat> = [];
+    operats.forEach(operat => {
+      console.log(operat.createUser);
+      this.userService.getUserById(operat.createUser).subscribe(data => {
+        console.log(data);
+        operat.createUserName = data.username;
+        operatsWithUserName.push(operat);
+      });
+    });
+    return operatsWithUserName;
+  }
+}

@@ -16,8 +16,8 @@
 <p-table  #table [value]="operaty" sortMode="multiple" [globalFilterFields]="['layer']">
   <ng-template pTemplate="caption">
     <div class="ui-helper-clearfix" style="text-align: left">
-      <button type="button" pButton icon="pi pi-file-excel" iconPos="left" label="EXCEL" (click)="exportExcel()" style="margin-right: 0.5em;" class="ui-button-success"></button>
-      <button type="button" pButton icon="pi pi-file-pdf" iconPos="left" label="PDF" (click)="exportPdf()" class="ui-button-warning"></button>
+      <button type="button" pButton icon="pi pi-file-excel" iconPos="left" label="EXCEL" (click)="exportExcel()" style="margin-right: 0.5em;" class="p-button-success"></button>
+      <button type="button" pButton icon="pi pi-file-pdf" iconPos="left" label="PDF" (click)="exportPdf()" class="p-button-warning"></button>
    </div>
     <div style="text-align: right">
         <i class="pi pi-search" style="margin:4px 4px 0 0"></i>
@@ -27,10 +27,11 @@
 	<ng-template pTemplate="header" >
 		<tr>
 			<th  [ngStyle]="{'width':'15%'}" [pSortableColumn]="'operatNumber'" >Numer Operatu<p-sortIcon [field]="'operatNumber'"></p-sortIcon></th>
-			<th  [ngStyle]="{'width':'35%'}" [pSortableColumn]="'layer'">Warstwa<p-sortIcon [field]="'layer'"></p-sortIcon></th>
+			<th  [ngStyle]="{'width':'30%'}" [pSortableColumn]="'layer'">Warstwa<p-sortIcon [field]="'layer'"></p-sortIcon></th>
       <th  [ngStyle]="{'width':'12%'}" [pSortableColumn]="'odKm'">Od km<p-sortIcon [field]="'odKm'"></p-sortIcon></th>
       <th  [ngStyle]="{'width':'12%'}"  [pSortableColumn]="'doKm'">do Km<p-sortIcon [field]="'doKm'"></p-sortIcon></th>
-      <th  [ngStyle]="{'width':'12%'}"></th>
+      <th [ngStyle]="{'width':'10%'}"  [pSortableColumn]="'createUserName'">Utworzył<p-sortIcon [field]="'createUserName'"></p-sortIcon></th>
+      <th  [ngStyle]="{'width':'6%'}"></th>
 		</tr>
 	</ng-template>
 
@@ -40,6 +41,8 @@
 			<td class="col-5">{{operat.layer}}</td>
       <td class="col-2">{{operat.odKm}}</td>
       <td class="col-2">{{operat.doKm}}</td>
+      <td class="col-1"><ngx-avatar  name= "{{operat.createUserName}}" bgColor="#000000" fgColor="#58D3F7" size="30"
+        textSizeRatio="2.0" [round]="true"></ngx-avatar></td>
       <td class="col-1" ><button (click)="editOperat(i)">Edit</button></td>
     </tr>
    </ng-template>

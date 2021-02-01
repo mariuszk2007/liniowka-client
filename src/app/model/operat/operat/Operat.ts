@@ -5,10 +5,11 @@ export class Operat {
   layer: string;
   odKm: number;
   doKm: number;
-  createUser:string;
-  updateUser:string;
+  createUser: string;
+  updateUser: string;
+  createUserName: string;
 
 }
 export interface OperatResponse{
-  Operaty:Array<Operat>;
+  Operaty: Array<Operat>;
 }

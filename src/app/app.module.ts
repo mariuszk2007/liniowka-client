@@ -21,6 +21,7 @@ import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { AvatarModule } from 'ngx-avatar';
+import { ChangeUserNamePipe } from './changeUserName.pipe';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { AvatarModule } from 'ngx-avatar';
     ProjektComponent,
     NewOperatComponent,
     EditOperatComponent,
-    HomeComponent
+    HomeComponent,
+    ChangeUserNamePipe
    ],
   imports: [
     BrowserModule,
@@ -45,7 +47,7 @@ import { AvatarModule } from 'ngx-avatar';
     AppRoutingModule,
     AvatarModule
   ],
-  providers: [ProjektService, OperatService, authInterceptorProviders],
+  providers: [ProjektService, OperatService, authInterceptorProviders, ChangeUserNamePipe],
   bootstrap: [AppComponent],
   exports: [NewProjektComponent]
 })

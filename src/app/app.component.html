@@ -19,10 +19,15 @@
 
     <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
       <li class="nav-item">
-        <a href="/profile" class="nav-link" routerLink="profile">{{username}}</a>
+        <a href="/profile" class="nav-link" routerLink="profile">
+          <ngx-avatar  name= "{{username}}" bgColor="#000000" fgColor="#58D3F7" size="70"
+          textSizeRatio="4.5" [round]="true"></ngx-avatar></a>
+       
       </li>
       <li class="nav-item">
-        <a href class="nav-link" (click)="logout()">LogOut</a>
+        <a href class="nav-link" (click)="logout()">
+          <ngx-avatar  name= "L O G O U T" bgColor="#000000" fgColor="#58D3F7" size="70"
+          textSizeRatio="4.5" [round]="true"></ngx-avatar></a>
       </li>
     </ul>
   </nav>

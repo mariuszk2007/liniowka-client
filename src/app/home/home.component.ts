@@ -5,6 +5,9 @@ import { Operat } from '../model/operat/operat/Operat';
 import { ProjektService } from '../model/projekt/projekt.service';
 import { OperatService } from '../model/operat/operat/operat.service';
 import { TokenStorageService } from '../_service/token-storage.service';
+import { UserService } from '../_service/user.service/user.service';
+import { User } from '../model/User';
+import { ChangeUserNamePipe } from '../changeUserName.pipe';
 
 @Component({
   selector: 'app-home',
@@ -23,11 +26,13 @@ export class HomeComponent implements OnInit {
   kmOd;
   kmDo;
   checkProjekt = true;
+  
 
 
   constructor(
     private projektService: ProjektService,
-    private operatService: OperatService) {
+    private operatService: OperatService,
+    private changeUserNamePipe: ChangeUserNamePipe) {
   }
   ngOnInit(): void {
 
@@ -56,14 +61,14 @@ export class HomeComponent implements OnInit {
       }
     });
     // tslint:disable-next-line:only-arrow-functions
-    inputkilometrDo.addEventListener('keyup', function(event) {
+    inputkilometrDo.addEventListener('keyup', function (event) {
       if (event.key === 'Enter') {
         event.preventDefault();
         document.getElementById('searchBetweenKilometr').click();
       }
     });
     // tslint:disable-next-line:only-arrow-functions
-    inputkilometrOd.addEventListener('keyup', function(event) {
+    inputkilometrOd.addEventListener('keyup', function (event) {
       if (event.key === 'Enter') {
         // Cancel the default action, if needed
         event.preventDefault();
@@ -90,28 +95,30 @@ export class HomeComponent implements OnInit {
     this.kilometraz = this.kilometraz.replace(/,/g, '.');
     this.operatService.getOperatsByKm(this.selectProjekt.projektId, this.kilometraz)
       .subscribe(data => {
+        data = this.changeUserNamePipe.transform(data);
         this.operatArray = data;
-      })
+      });
   }
 
   searchByLayerButton() {
     this.operatService.getOperatsByLayer(this.selectProjekt.projektId, this.operatLayer)
       .subscribe(data => {
+        data = this.changeUserNamePipe.transform(data);
         this.operatArray = data;
-      })
+      });
   }
   searchBetween() {
     this.kmOd = this.kmOd.replace(/,/g, '.');
     this.kmDo = this.kmDo.replace(/,/g, '.');
     this.operatService.getOperatsInScope(this.selectProjekt.projektId, this.kmOd, this.kmDo)
       .subscribe(data => {
+        data = this.changeUserNamePipe.transform(data);
         this.operatArray = data;
-      })
+      });
   }
 
   handleUpdate(addProjekt: Projekt) {
     this.selectProjekt = addProjekt;
     this.checkProjekt = false;
   }
-
 }

@@ -17,6 +17,7 @@ export class UserService {
       const options = {
         params: new HttpParams().set('userId', userId)
       };
+      console.log('user service');
       return this.http.get(AUTH_API + 'userId', options);
     }
   }

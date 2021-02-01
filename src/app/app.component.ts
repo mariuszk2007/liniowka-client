@@ -18,7 +18,9 @@ export class AppComponent implements OnInit, OnChanges {
   username: string;
 
 
-  constructor(private tokenStorageService: TokenStorageService, private router: Router) { }
+  constructor(
+      private tokenStorageService: TokenStorageService,
+      private router: Router) { }
 
   ngOnInit(): void {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
@@ -38,8 +40,7 @@ export class AppComponent implements OnInit, OnChanges {
     this.router.navigate(['./']);
   }
 
-  ngOnChanges():void{
+  ngOnChanges(): void {
     window.location.reload();
   }
-
 }
