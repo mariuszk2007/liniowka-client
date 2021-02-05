@@ -40,7 +40,7 @@ export class AuthService {
     }, httpOptions);
   }
   sendToken(userdetails):Observable<any> {
-    throw this.http.post(AUTH_API + 'token',{
+    throw this.http.post(AUTH_API + 'settoken',{
       email: userdetails.email},
       httpOptions
     );
