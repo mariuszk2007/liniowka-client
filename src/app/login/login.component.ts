@@ -16,6 +16,8 @@ export class LoginComponent implements OnInit {
   isLoginFailed = false;
   errorMessage = '';
   roles: string[] = [];
+  showNewPass = false;
+  changePassButton = "Zmiana Hasła"
 
   constructor(
     private authService: AuthService,
@@ -51,8 +53,16 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = true;
       });
   }
+
+  showNewPassForm():void{
+    this.showNewPass = !this.showNewPass;
+    if(this.showNewPass){
+    this.changePassButton = "Wyjdź"}
+      else this.changePassButton="Zmiana Hasła"
+
+  }
   reloadPage(): void {
     window.location.href = '../';
-    //komentarz
+    
   }
 }

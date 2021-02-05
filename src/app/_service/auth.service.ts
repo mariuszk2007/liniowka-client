@@ -10,6 +10,7 @@ const httpOptions = {headers: new HttpHeaders({ 'Content-Type': 'application/jso
   providedIn: 'root'
 })
 export class AuthService {
+  
 
   constructor(private http: HttpClient) { }
   getCurrentUser(username): Observable<any>{
@@ -36,6 +37,19 @@ export class AuthService {
      email: user.email,
      password: user.password,
      role: ['user']
+    }, httpOptions);
+  }
+  sendToken(userdetails):Observable<any> {
+    throw this.http.post(AUTH_API + 'token',{
+      email: userdetails.email},
+      httpOptions
+    );
+  }
+  resetpass(userdetails):Observable<any> {
+    return this.http.post(AUTH_API + 'reset',{
+      email: userdetails.email,
+      token: userdetails.token,
+      password: userdetails.password
     }, httpOptions);
   }
 }
