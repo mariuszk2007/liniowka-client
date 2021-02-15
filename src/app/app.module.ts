@@ -22,7 +22,8 @@ import { HomeComponent } from './home/home.component';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { AvatarModule } from 'ngx-avatar';
 import { ChangeUserNamePipe } from './changeUserName.pipe';
-import { NewPassComponent } from './_helpers/newPass/new-pass/new-pass.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NewPassComponent } from './login/new-pass/new-pass.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { NewPassComponent } from './_helpers/newPass/new-pass/new-pass.component
     EditOperatComponent,
     HomeComponent,
     ChangeUserNamePipe,
-    NewPassComponent
+    NewPassComponent,
+    NgbModule
    ],
   imports: [
     BrowserModule,
