@@ -37,8 +37,7 @@ import { NewPassComponent } from './login/new-pass/new-pass.component';
     EditOperatComponent,
     HomeComponent,
     ChangeUserNamePipe,
-    NewPassComponent,
-    NgbModule
+    NewPassComponent
    ],
   imports: [
     BrowserModule,
@@ -49,7 +48,8 @@ import { NewPassComponent } from './login/new-pass/new-pass.component';
     ButtonModule,
     InputTextModule,
     AppRoutingModule,
-    AvatarModule
+    AvatarModule,
+    NgbModule
   ],
   providers: [ProjektService, OperatService, authInterceptorProviders, ChangeUserNamePipe],
   bootstrap: [AppComponent],

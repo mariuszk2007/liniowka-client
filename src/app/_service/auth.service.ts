@@ -40,14 +40,16 @@ export class AuthService {
     }, httpOptions);
   }
   sendToken(userdetails):Observable<any> {
-    throw this.http.post(AUTH_API + 'settoken',{
-      email: userdetails.email},
+    console.log(userdetails.usermail);
+    
+    return this.http.post(AUTH_API + 'settoken',
+    userdetails.usermail,
       httpOptions
     );
   }
   resetpass(userdetails):Observable<any> {
     return this.http.post(AUTH_API + 'reset',{
-      email: userdetails.email,
+      email: userdetails.usermail,
       token: userdetails.token,
       password: userdetails.password
     }, httpOptions);

@@ -1,5 +1,7 @@
+
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Message } from 'src/app/model/Message';
 import { AuthService } from 'src/app/_service/auth.service';
 
 @Component({
@@ -14,6 +16,8 @@ export class NewPassComponent implements OnInit {
   @Input()
   newPassForm = false;
   isTokenFailed = false;
+  messege ='';
+  messageObject: Message;
 
   constructor(private authService: AuthService,
       private router: Router) { }
@@ -23,11 +27,25 @@ export class NewPassComponent implements OnInit {
   }
 
   onSubmit():void{
-    this.authService.resetpass(this.form).subscribe;
+   
+    this.authService.resetpass(this.form).subscribe(
+      data=>{
+        this.messageObject=data;
+        this.messege = this.messageObject.message;
+       }
+    );
 
   }
   sendToken():void{
-    this.authService.sendToken(this.form).subscribe;
+    console.log(this.form);
+    this.authService.sendToken(this.form).subscribe(
+      data=>{
+         this.messageObject=data;
+         this.messege = this.messageObject.message;
+
+    }
+      
+    );
   }
   exit():void{
     this.newPassForm = !this.newPassForm;
