@@ -8,6 +8,7 @@ import { UserService } from 'src/app/_service/user.service/user.service';
 
 
 
+
 @Component({
   selector: 'app-operat',
   templateUrl: './operat.component.html',

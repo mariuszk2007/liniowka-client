@@ -1,12 +1,10 @@
 html,
 body {
-  height: 95%;
+  width: 100%;
 }
 
-#page-content {
-  flex: 1 0 auto;
-}
-
-#sticky-footer {
-  flex-shrink: none;
-}
+footer {
+  position:sticky;
+  bottom:0;
+  width:100%;
+  }

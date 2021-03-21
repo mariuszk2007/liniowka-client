@@ -13,7 +13,9 @@
 <div class="table table-bordered table-responsive table-hover table-striped">
 
 
-<p-table  #table [value]="operaty" sortMode="multiple" [globalFilterFields]="['layer']">
+<p-table  #table [value]="operaty" sortMode="multiple" [globalFilterFields]="['layer']" [scrollable]="true" scrollHeight="25vh"
+>
+
   <ng-template pTemplate="caption">
     <div class="ui-helper-clearfix" style="text-align: left">
       <button type="button" pButton icon="pi pi-file-excel" iconPos="left" label="EXCEL" (click)="exportExcel()" style="margin-right: 0.5em;" class="p-button-success"></button>
@@ -34,7 +36,7 @@
       <th  [ngStyle]="{'width':'6%'}"></th>
 		</tr>
 	</ng-template>
-
+  
 	<ng-template pTemplate="body" let-operat let-i="rowIndex">
 		<tr>
 			<td class="col-2">{{operat.operatNumber }}</td>
@@ -46,7 +48,7 @@
       <td class="col-1" ><button (click)="editOperat(i)">Edit</button></td>
     </tr>
    </ng-template>
-
+ 
 	<tfoot>
 
   </tfoot>

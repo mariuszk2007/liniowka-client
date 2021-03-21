@@ -24,6 +24,7 @@ import { AvatarModule } from 'ngx-avatar';
 import { ChangeUserNamePipe } from './changeUserName.pipe';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { NewPassComponent } from './login/new-pass/new-pass.component';
+import {ScrollPanelModule} from 'primeng/scrollpanel';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,7 @@ import { NewPassComponent } from './login/new-pass/new-pass.component';
     EditOperatComponent,
     HomeComponent,
     ChangeUserNamePipe,
-    NewPassComponent
+    NewPassComponent    
    ],
   imports: [
     BrowserModule,
@@ -49,7 +50,8 @@ import { NewPassComponent } from './login/new-pass/new-pass.component';
     InputTextModule,
     AppRoutingModule,
     AvatarModule,
-    NgbModule
+    NgbModule,
+    ScrollPanelModule
   ],
   providers: [ProjektService, OperatService, authInterceptorProviders, ChangeUserNamePipe],
   bootstrap: [AppComponent],
