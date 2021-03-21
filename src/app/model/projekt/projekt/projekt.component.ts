@@ -1,5 +1,5 @@
-import { OperatService } from './../../operat/operat/operat.service';
-import { ProjektService } from './../projekt.service';
+import { OperatService } from '../../../_service/operat.service';
+import { ProjektService } from '../../../_service/projekt.service';
 import { Component, OnInit, Output, EventEmitter, Input, OnChanges } from '@angular/core';
 import { Projekt } from '../Projekt';
 import { Operat } from '../../operat/operat/Operat';

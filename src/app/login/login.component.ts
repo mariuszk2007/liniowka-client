@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit {
 
   }
   reloadPage(): void {
-    window.location.href = '../';
+    window.location.href = '../operaty/';
     
   }
 }

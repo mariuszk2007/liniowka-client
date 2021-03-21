@@ -1,4 +1,4 @@
-import { ProjektService } from './../projekt.service';
+import { ProjektService } from '../../../_service/projekt.service';
 import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
 import { Projekt } from '../Projekt';
 import { FormBuilder } from '@angular/forms';

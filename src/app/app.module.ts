@@ -1,7 +1,7 @@
 import { TableModule } from 'primeng/table';
 
-import { OperatService } from './model/operat/operat/operat.service';
-import { ProjektService } from './model/projekt/projekt.service';
+import { OperatService } from './_service/operat.service';
+import { ProjektService } from './_service/projekt.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 

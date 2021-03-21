@@ -2,9 +2,9 @@
 import { Projekt } from './../../projekt/Projekt';
 import { Component, OnInit, OnChanges, Input, ElementRef, ViewChild, AfterViewInit, Output, EventEmitter } from '@angular/core';
 import { Operat } from './Operat';
-import { OperatService } from './operat.service';
+import { OperatService } from '../../../_service/operat.service';
 import { UserService } from 'src/app/_service/user.service/user.service';
-import { User } from '../../User';
+
 
 
 

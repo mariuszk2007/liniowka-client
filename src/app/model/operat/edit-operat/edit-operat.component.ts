@@ -2,7 +2,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit, Input, Output, EventEmitter, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { Operat } from '../operat/Operat';
 import { Projekt } from '../../projekt/Projekt';
-import { OperatService } from '../operat/operat.service';
+import { OperatService } from '../../../_service/operat.service';
 import { TokenStorageService } from 'src/app/_service/token-storage.service';
 
 @Component({

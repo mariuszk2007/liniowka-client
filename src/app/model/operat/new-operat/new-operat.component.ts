@@ -2,7 +2,7 @@ import { Projekt } from './../../projekt/Projekt';
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Operat } from '../operat/Operat';
-import { OperatService } from '../operat/operat.service';
+import { OperatService } from '../../../_service/operat.service';
 import { UpperCasePipe } from '@angular/common';
 import { TokenStorageService } from 'src/app/_service/token-storage.service';
 

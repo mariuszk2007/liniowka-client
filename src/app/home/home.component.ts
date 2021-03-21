@@ -2,8 +2,8 @@
 import { Component, Output, EventEmitter, Input, OnInit } from '@angular/core';
 import { Projekt } from '../model/projekt/Projekt';
 import { Operat } from '../model/operat/operat/Operat';
-import { ProjektService } from '../model/projekt/projekt.service';
-import { OperatService } from '../model/operat/operat/operat.service';
+import { ProjektService } from '../_service/projekt.service';
+import { OperatService } from '../_service/operat.service';
 import { TokenStorageService } from '../_service/token-storage.service';
 import { UserService } from '../_service/user.service/user.service';
 import { User } from '../model/User';

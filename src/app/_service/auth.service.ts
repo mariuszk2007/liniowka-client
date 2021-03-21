@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient, HttpResponse, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { UserService } from './user.service/user.service';
+import { PathService } from './Path.service';
 
-const AUTH_API = 'http://localhost:8090/';
+//const AUTH_API = 'https://localhost:8443/linear/';
+//const AUTH_API = 'http://egsrv:8080/linear/';
 
 const httpOptions = {headers: new HttpHeaders({ 'Content-Type': 'application/json' })};
 
@@ -12,19 +15,19 @@ const httpOptions = {headers: new HttpHeaders({ 'Content-Type': 'application/jso
 export class AuthService {
   
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private userservice: UserService, private pathService: PathService) { }
   getCurrentUser(username): Observable<any>{
     const options = {
       params: new HttpParams().set('username', username)
     };
-    return this.http.get(AUTH_API + 'current', options);
+    return this.http.get(this.pathService.urlApp + 'current', options);
   }
 
   login(credentials): Observable<any> {
     const httpHeaders = new HttpHeaders({
       'Content-Type' : 'application/json'
    });
-    return this.http.post(AUTH_API + 'login', {
+    return this.http.post(this.pathService.urlApp + 'login', {
       username: credentials.username,
       password: credentials.password
     }, { headers: httpHeaders,
@@ -32,7 +35,7 @@ export class AuthService {
   }
 
   register(user): Observable<any> {
-    return this.http.post(AUTH_API + 'sign-up', {
+    return this.http.post(this.pathService.urlApp + 'sign-up', {
      username: user.username,
      email: user.email,
      password: user.password,
@@ -42,13 +45,13 @@ export class AuthService {
   sendToken(userdetails):Observable<any> {
     console.log(userdetails.usermail);
     
-    return this.http.post(AUTH_API + 'settoken',
+    return this.http.post(this.pathService.urlApp + 'settoken',
     userdetails.usermail,
       httpOptions
     );
   }
   resetpass(userdetails):Observable<any> {
-    return this.http.post(AUTH_API + 'reset',{
+    return this.http.post(this.pathService.urlApp + 'reset',{
       email: userdetails.usermail,
       token: userdetails.token,
       password: userdetails.password

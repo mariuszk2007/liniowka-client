@@ -1,24 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { PathService } from '../Path.service';
 
-const AUTH_API = 'http://localhost:8090/';
-
-//const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor(private http: HttpClient) {}
-
+  constructor(private http: HttpClient, private pathService: PathService) {}
+  urlApp = 'http://egsrv:8080/linear/';
     getUserById(userId): Observable<any>{
       const options = {
         params: new HttpParams().set('userId', userId)
       };
       console.log('user service');
-      return this.http.get(AUTH_API + 'userId', options);
+      return this.http.get(this.pathService.urlApp + 'userId', options);
     }
   }
 
