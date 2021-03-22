@@ -13,7 +13,7 @@
 <div class="table table-bordered table-responsive table-hover table-striped">
 
 
-<p-table  #table [value]="operaty" sortMode="multiple" [globalFilterFields]="['layer']" [scrollable]="true" scrollHeight="25vh"
+<p-table  #table [value]="operaty" sortMode="multiple" [globalFilterFields]="['layer']" 
 >
 
   <ng-template pTemplate="caption">
@@ -39,8 +39,8 @@
   
 	<ng-template pTemplate="body" let-operat let-i="rowIndex">
 		<tr>
-			<td class="col-2">{{operat.operatNumber }}</td>
-			<td class="col-5">{{operat.layer}}</td>
+			<td  class="col-2">{{operat.operatNumber }}</td>
+			<td  class="col-5">{{operat.layer}}</td>
       <td class="col-2">{{operat.odKm}}</td>
       <td class="col-2">{{operat.doKm}}</td>
       <td class="col-1"><ngx-avatar  name= "{{operat.createUserName}}" bgColor="#000000" fgColor="#58D3F7" size="30"
